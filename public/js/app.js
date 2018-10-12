@@ -111,6 +111,7 @@ $('body').on('click', '.btn-delete', function (event) {
                             type: 'success',
                             title: 'Success!',
                             text: 'Data has been deleted!',
+                            timer   : 1000
                         });
                      },
                      error: function (xhr) {
@@ -118,6 +119,7 @@ $('body').on('click', '.btn-delete', function (event) {
                             type: 'error',
                             title: 'Oops...',
                             text: 'Something went wrong!',
+                            timer   : 1000
                         });
                      }
                 });
