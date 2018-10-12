@@ -19,6 +19,20 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin']], function () {
+    Route::resource('user', 'UserController');
+});
+
+Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth']], function () {
+    Route::get('/profile', 'ProfileController@index')->name('profile.index');
+    Route::put('/profile/update', 'ProfileController@update')->name('profile.update');
+});
+
+
+Route::group(['prefix' => 'table', 'as' => 'table.', 'middleware' => ['auth']], function () {
+    Route::get('user', 'UserController@dataTable')->name('user');
+});
+
 /**
  * Example Role Middleware
  */
