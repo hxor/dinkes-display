@@ -13,7 +13,15 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['only' => 'home']);
+    }
+
+    /**
+     * Show index page
+     */
+    public function index()
+    {
+        return view('welcome');
     }
 
     /**
@@ -21,7 +29,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function home()
     {
         return view('home');
     }
