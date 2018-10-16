@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin']], function () {
     Route::resource('user', 'UserController');
     Route::resource('setting', 'SettingController', ['only' => ['index', 'store']]);
+    Route::resource('graha', 'GrahaController');
 });
 
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth']], function () {
@@ -32,6 +33,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth']], fu
 
 Route::group(['prefix' => 'table', 'as' => 'table.', 'middleware' => ['auth']], function () {
     Route::get('user', 'UserController@dataTable')->name('user');
+    Route::get('graha', 'GrahaController@dataTable')->name('graha');
 });
 
 /**

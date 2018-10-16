@@ -1,6 +1,12 @@
 $('body').on('click', '.modal-show', function (event) {
     event.preventDefault();
 
+    $(document).on("keypress", ":input:not(textarea):not([type=submit])", function (event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+        }
+    });
+
     var me = $(this),
         url = me.attr('href'),
         title = me.attr('title');

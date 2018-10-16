@@ -12,6 +12,9 @@
 
                 @if (Auth::user()->roles->role == 'admin')
                     <li class="">
+                        <a href="{{ route('admin.graha.index') }}" class="waves-effect"><i class="ti-harddrives"></i> <span> Graha </span></a>
+                    </li>
+                    <li class="">
                         <a href="{{ route('admin.user.index') }}" class="waves-effect"><i class="ti-user"></i> <span> Users </span></a>
                     </li>
                     <li class="">

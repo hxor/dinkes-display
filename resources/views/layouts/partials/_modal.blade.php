@@ -14,7 +14,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger btn-custom waves-effect waves-light" data-dismiss="modal">Close</button>
-                <button type="button" id="modal-btn-save" class="btn btn-primary btn-custom waves-effect waves-light">Save changes</button>
+                <button type="submit" id="modal-btn-save" class="btn btn-primary btn-custom waves-effect waves-light">Save changes</button>
             </div>
         </div>
     </div>
