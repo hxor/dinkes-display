@@ -18,6 +18,10 @@
                         <a href="{{ route('user.playlist.index') }}" class="waves-effect"><i class="ti-control-eject"></i> <span> Video Display </span></a>
                     </li>
 
+                    <li class="">
+                        <a href="{{ route('user.runtext.index') }}" class="waves-effect"><i class="ti-info-alt"></i> <span> Running Text </span></a>
+                    </li>
+
                 @if (Auth::user()->roles->role == 'admin')
                     <li class="">
                         <a href="{{ route('admin.graha.index') }}" class="waves-effect"><i class="ti-harddrives"></i> <span> Graha </span></a>
