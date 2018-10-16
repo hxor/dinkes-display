@@ -14,6 +14,9 @@
                     <li class="">
                         <a href="{{ route('admin.user.index') }}" class="waves-effect"><i class="ti-user"></i> <span> Users </span></a>
                     </li>
+                    <li class="">
+                        <a href="{{ route('admin.setting.index') }}" class="waves-effect"><i class="ti-settings"></i> <span> Settings </span></a>
+                    </li>
                 @endif
 
                 <li class="text-muted menu-title">More</li>
