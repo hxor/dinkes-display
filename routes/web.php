@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
 
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth']], function () {
     Route::resource('schedule', 'ScheduleController');
+    Route::resource('playlist', 'PlaylistController');
 
     Route::get('/profile', 'ProfileController@index')->name('profile.index');
     Route::put('/profile/update', 'ProfileController@update')->name('profile.update');
@@ -37,6 +38,7 @@ Route::group(['prefix' => 'table', 'as' => 'table.', 'middleware' => ['auth']], 
     Route::get('user', 'UserController@dataTable')->name('user');
     Route::get('graha', 'GrahaController@dataTable')->name('graha');
     Route::get('schedule', 'ScheduleController@dataTable')->name('schedule');
+    Route::get('playlist', 'PlaylistController@dataTable')->name('playlist');
 });
 
 /**

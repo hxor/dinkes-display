@@ -10,6 +10,14 @@
                     <a href="{{ route('home') }}" class="waves-effect"><i class="ti-home"></i> <span> Dashboard </span></a>
                 </li>
 
+                    <li class="">
+                        <a href="{{ route('user.schedule.index') }}" class="waves-effect"><i class="ti-bookmark-alt"></i> <span> Jadwal Kegiatan </span></a>
+                    </li>
+
+                    <li class="">
+                        <a href="{{ route('user.playlist.index') }}" class="waves-effect"><i class="ti-control-eject"></i> <span> Video Display </span></a>
+                    </li>
+
                 @if (Auth::user()->roles->role == 'admin')
                     <li class="">
                         <a href="{{ route('admin.graha.index') }}" class="waves-effect"><i class="ti-harddrives"></i> <span> Graha </span></a>
@@ -22,9 +30,7 @@
                     </li>
                 @endif
 
-                    <li class="">
-                        <a href="{{ route('user.schedule.index') }}" class="waves-effect"><i class="ti-bookmark-alt"></i> <span> Jadwal Kegiatan </span></a>
-                    </li>
+
 
                 <li class="text-muted menu-title">More</li>
 
