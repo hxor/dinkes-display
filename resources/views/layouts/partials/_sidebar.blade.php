@@ -22,6 +22,10 @@
                     </li>
                 @endif
 
+                    <li class="">
+                        <a href="{{ route('user.schedule.index') }}" class="waves-effect"><i class="ti-bookmark-alt"></i> <span> Jadwal Kegiatan </span></a>
+                    </li>
+
                 <li class="text-muted menu-title">More</li>
 
                 <li class="has_sub">
