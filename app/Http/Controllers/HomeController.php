@@ -41,7 +41,7 @@ class HomeController extends Controller
     public function schedule($id)
     {
         $date = new DateTime();
-        $jam = $date->format('Y-m-d H:i:s');
+        $jam = $date->format('Y-m-d H:i' . ':00');
         $graha = "Graha {$id}";
         $data = Schedule::where('clock_start_early', $jam)->where('graha_id', $id)->first();
         return view('_schedule', compact('graha', 'data'));

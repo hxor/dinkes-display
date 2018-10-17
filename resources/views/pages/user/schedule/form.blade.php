@@ -25,28 +25,51 @@
 
             <div class="form-group{{ $errors->has('date_start') ? ' has-error' : '' }}">
                 {!! Form::label('date_start', 'Tanggal Mulai') !!}
-                {!! Form::text('date_start', null, ['id' => 'date_start', 'class' => 'form-control', 'required' => 'required']) !!}
+                <div class="input-group">
+                    {!! Form::text('date_start', null, ['id' => 'date_start', 'class' => 'form-control datepicker', 'required' => 'required']) !!}
+                    <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
+                </div>
                 <small class="text-danger">{{ $errors->first('date_start') }}</small>
             </div>
 
             <div class="form-group{{ $errors->has('clock_start') ? ' has-error' : '' }}">
                 {!! Form::label('clock_start', 'Jam Mulai') !!}
-                {!! Form::text('clock_start', null, ['id' => 'clock_start', 'class' => 'form-control', 'required' => 'required']) !!}
+                <div class="input-group clockpicker " data-placement="top" data-align="top" data-autoclose="true">
+                    {!! Form::text('clock_start', null, ['id' => 'clock_start', 'class' => 'form-control', 'required' => 'required']) !!}
+                    <span class="input-group-addon"> <span class="glyphicon glyphicon-time"></span> </span>
+                </div>
                 <small class="text-danger">{{ $errors->first('clock_start') }}</small>
             </div>
 
             <div class="form-group{{ $errors->has('date_end') ? ' has-error' : '' }}">
                 {!! Form::label('date_end', 'Tanggal Selesai') !!}
-                {!! Form::text('date_end', null, ['id' => 'date_end', 'class' => 'form-control', 'required' => 'required']) !!}
+                <div class="input-group">
+                    {!! Form::text('date_end', null, ['id' => 'date_end', 'class' => 'form-control datepicker', 'required' => 'required']) !!}
+                    <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
+                </div>
                 <small class="text-danger">{{ $errors->first('date_end') }}</small>
             </div>
 
             <div class="form-group{{ $errors->has('clock_end') ? ' has-error' : '' }}">
                 {!! Form::label('clock_end', 'Jam Selesai') !!}
-                {!! Form::text('clock_end', null, ['id' => 'clock_end', 'class' => 'form-control', 'required' => 'required']) !!}
+                <div class="input-group clockpicker " data-placement="top" data-align="top" data-autoclose="true">
+                    {!! Form::text('clock_end', null, ['id' => 'clock_end', 'class' => 'form-control', 'required' => 'required']) !!}
+                    <span class="input-group-addon"> <span class="glyphicon glyphicon-time"></span> </span>
+                </div>
                 <small class="text-danger">{{ $errors->first('clock_end') }}</small>
             </div>
 
         {!! Form::close() !!}
     </div>
 </div>
+
+<script>
+    $('.clockpicker').clockpicker({
+        donetext: 'Done'
+    });
+    jQuery('.datepicker').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: "yyyy-mm-dd"
+    });
+</script>

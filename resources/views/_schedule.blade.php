@@ -2,7 +2,7 @@
     <h1>
         <strong>{{ $graha }}</strong>
     </h1>
-    <table class="" border="0">
+    <table class="" border="0" style="font-size:21px;">
         <tr>
             <th>Kegiatan</th>
             <td>:</td>
