@@ -31,18 +31,18 @@
     <![endif]-->
   </head>
 
-  <body>
+  <body onload="onload();">
 
     <div class="example3">
-        <nav class="navbar navbar navbar-static-top" style="background:#69ca86;">
+        <nav class="navbar navbar navbar-static-top" style="background:{{ $setting->color_header }};">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" style="padding-top: 0px;" href="{{ url('/') }}"><img src="{{ asset('assets/img/logo-kemenkes.png') }}" height="80" alt="Dispute Bills">
+                    <a class="navbar-brand" style="padding-top: 0px;" href="{{ url('/') }}"><img src="{{ asset($setting->logo) }}" height="80" alt="Dispute Bills">
                 </a>
                 </div>
                 <div id="navbar3" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><div class="clock" style="color:white; font-size: 4em;"></div></li>
+                    <li class="active"><div class="clock" style="color:{{ $setting->color_clock }}; font-size: 4em;"></div></li>
                 </ul>
                 </div>
                 <!--/.nav-collapse -->
@@ -57,34 +57,12 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-8">
-                        <video id="idle_video" onended="onVideoEnded();" controls="" src="http://devel.cirebonkota.go.id/display/files/shares/sample-video.mp4"></video>
+                        <video id="idle_video" onended="onVideoEnded();"></video>
                     </div>
-                    <div class="col-md-4">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h1>
-                                    <strong>Graha 1</strong>
-                                </h1>
-                                <p>
-                                    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-                                </p>
-                                <p>
-                                    <a class="btn" href="#">View details »</a>
-                                </p>
-                            </div>
+                    <div class="col-md-4" id="content">
+                        <div class="row" id="graha1">
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h1>
-                                    <strong>Graha 2</strong>
-                                </h1>
-                                <p>
-                                    Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-                                </p>
-                                <p>
-                                    <a class="btn" href="#">View details »</a>
-                                </p>
-                            </div>
+                        <div class="row" id="graha2">
                         </div>
                     </div>
                 </div>
@@ -92,12 +70,14 @@
         </div>
     </div>
 
-    <footer class="footer" style="background:#121238;">
+    <footer class="footer" style="background:{{ $setting->color_footer }};">
       <div class="container-fluid">
-        <marquee behavior="scroll" direction="left" style="color: #ffffff; font-size:28px">
+        <marquee behavior="scroll" direction="left" style="color: {{ $setting->color_text }}; font-size:28px">
+            @foreach ($runtext as $text)
             <b>
-                Tenaga kesehatan di Kota Cirebon masih sangat kurang. Dengan peningkatan jumlah pasien yang berobat ke puskesmas, tidak diimbangi dengan penambahan tenaga kesehatan.<span> </span>
+                {{ $text->content }}<span> </span>
             </b>
+            @endforeach
         </marquee>
       </div>
     </footer>
@@ -111,6 +91,39 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{{ asset('assets/js/ie10-viewport-bug-workaround.js') }}"></script>
     <script src="{{ asset('assets/js/sticky-footer-navbar.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+            var url = "{{ url('api/schedule/') }}";
+            setInterval(function() {
+                $.ajax({
+                    type: 'GET',
+                    url: url + '/1',
+                    dataType: 'html',
+                    success: function (res) {
+                        $('#graha1').html(res);
+                    }
+                });
+
+                $.ajax({
+                    type: 'GET',
+                    url: url + '/2',
+                    dataType: 'html',
+                    success: function (res) {
+                        $('#graha2').html(res);
+                    }
+                });
+            }, 60 * 1000);
+        });
+    </script>
+
+    <script>
+        var video_list = {!! json_encode($playlist, JSON_UNESCAPED_SLASHES) !!}; var video_index = 0; var video_player = null; function
+        onload(){ console.log("body loaded"); video_player = document.getElementById("idle_video"); video_player.setAttribute("src",
+        video_list[video_index]); video_player.play(); } function onVideoEnded(){ console.log("video ended"); if(video_index < video_list.length
+            - 1){ video_index++; } else{ video_index=0 ; } video_player.setAttribute( "src", video_list[video_index]); video_player.play();
+            }
+    </script>
 
 
   </body>

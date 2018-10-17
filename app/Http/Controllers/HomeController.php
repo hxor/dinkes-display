@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
+use App\Models\RunningText as Runtext;
+use App\Models\Playlist as Video;
+use App\Models\Schedule;
+use DateTime;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,7 +26,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $setting = Setting::first();
+        $runtext = Runtext::where('status', 1)->get();
+        $video = Video::select('media')->where('status', 1)->get();
+        $playlist = [];
+        foreach ($video as $video) {
+            $playlist[] = asset($video->media);
+        }
+
+        return view('welcome', compact('setting', 'runtext', 'playlist'));
+    }
+
+
+    public function schedule($id)
+    {
+        $date = new DateTime();
+        $jam = $date->format('Y-m-d H:i:s');
+        $graha = "Graha {$id}";
+        $data = Schedule::where('clock_start_early', $jam)->where('graha_id', $id)->first();
+        return view('_schedule', compact('graha', 'data'));
     }
 
     /**

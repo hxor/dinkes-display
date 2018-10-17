@@ -20,6 +20,7 @@ class CreateSchedulesTable extends Migration
             $table->text('desc');
             $table->date('date_start');
             $table->string('clock_start');
+            $table->timestamp('clock_start_early');
             $table->date('date_end');
             $table->string('clock_end');
             $table->timestamps();

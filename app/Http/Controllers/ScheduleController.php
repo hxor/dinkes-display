@@ -55,6 +55,10 @@ class ScheduleController extends Controller
             'clock_end' => 'required'
         ]);
 
+        $time = $request->date_start . ' ' . $request->clock_start;
+        $datetime_from = date("Y-m-d H:i", strtotime("-30 minutes", strtotime($time)));
+        $request['clock_start_early'] = $datetime_from;
+
         $model = $this->model->create($request->all());
         return $model;
     }
@@ -103,6 +107,11 @@ class ScheduleController extends Controller
         ]);
 
         $model = $this->model->findOrFail($id);
+
+        $time = $request->date_start . ' ' . $request->clock_start;
+        $datetime_from = date("Y-m-d H:i", strtotime("-30 minutes", strtotime($time)));
+        $request['clock_start_early'] = $datetime_from;
+
         $model->update($request->all());
         return $model;
     }
